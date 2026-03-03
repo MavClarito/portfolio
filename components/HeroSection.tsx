@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import { useState, useEffect } from "react";
-// icons for tech badges
 import {
   SiPython,
   SiCplusplus,
@@ -12,6 +11,7 @@ import {
   SiReact,
   SiNodedotjs,
 } from "react-icons/si";
+import { FaLinkedin, FaGithub, FaArrowRight } from "react-icons/fa";
 
 const container: Variants = {
   hidden: {},
@@ -31,7 +31,6 @@ export default function HeroSection() {
   const fullText = "Hello, I am Maverick Clarito";
   const [typed, setTyped] = useState("");
 
-  // technologies to show as badges
   const techs = [
     { name: 'Python', icon: SiPython, color: '#3776AB' },
     { name: 'C++', icon: SiCplusplus, color: '#00599C' },
@@ -40,24 +39,30 @@ export default function HeroSection() {
     { name: 'React', icon: SiReact, color: '#61DAFB', iconColor: '#000' },
     { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
   ];
+  const techStackText = "Tech Stack";
+  const [typedTech, setTypedTech] = useState("");
 
-  // typing animation
   useEffect(() => {
     let idx = 0;
     const timer = setInterval(() => {
-      // update typed via substring so we never append undefined
+      idx += 1;
+      setTypedTech(techStackText.substring(0, idx));
+      if (idx >= techStackText.length) clearInterval(timer);
+    }, 80);
+    return () => clearInterval(timer);
+}, []);
+  useEffect(() => {
+    let idx = 0;
+    const timer = setInterval(() => {
       idx += 1;
       setTyped(fullText.substring(0, idx));
-      if (idx >= fullText.length) {
-        clearInterval(timer);
-      }
+      if (idx >= fullText.length) clearInterval(timer);
     }, 80);
     return () => clearInterval(timer);
   }, []);
 
   return (
     <section className="min-h-screen flex flex-col justify-center bg-black relative overflow-hidden">
-      {/* Subtle grid overlay */}
       <div
         className="pointer-events-none absolute inset-0 opacity-50"
         style={{
@@ -66,7 +71,6 @@ export default function HeroSection() {
           backgroundSize: "64px 64px",
         }}
       />
-      {/* Top-left radial glow */}
       <div
         className="pointer-events-none absolute -top-48 -left-48 w-[700px] h-[700px] rounded-full"
         style={{
@@ -75,7 +79,6 @@ export default function HeroSection() {
         }}
       />
 
-      {/* wider container so content can spread out, remove hard limit on very large screens */}
       <div className="w-full max-w-none mx-auto px-6 md:px-10 lg:px-16 py-16">
         <div className="flex flex-col md:flex-row md:items-center gap-16 md:gap-24">
           {/* Profile Image */}
@@ -86,7 +89,6 @@ export default function HeroSection() {
             className="shrink-0 flex justify-center md:flex-1 md:max-w-[550px]"
           >
             <div className="relative">
-              {/* Glow behind image */}
               <div
                 className="absolute inset-0 rounded-2xl"
                 style={{
@@ -118,9 +120,7 @@ export default function HeroSection() {
               <p
                 className="text-xs font-roboto tracking-[3px] uppercase mb-3"
                 style={{ color: "rgba(0,191,255,0.8)" }}
-              >
-                {/*Welcome to my portfolio*/}
-              </p>
+              ></p>
               <h1
                 className="font-sans font-bold leading-[1.08] mb-2 typing-text"
                 style={{
@@ -130,7 +130,6 @@ export default function HeroSection() {
                 }}
               >
                 {(() => {
-                  // avoid processing if typed is empty
                   if (!typed) return null;
                   const parts = typed.split(/(Maverick)/);
                   return parts.map((p, i) =>
@@ -145,10 +144,7 @@ export default function HeroSection() {
                 })()}
                 <span className="blinker">|</span>
               </h1>
-              <p
-                className="font-sans text-xl sm:text-2xl"
-                style={{ color: "#757575" }}
-              >
+              <p className="font-sans text-xl sm:text-2xl" style={{ color: "#757575" }}>
                 Computer Engineer
               </p>
             </motion.div>
@@ -161,20 +157,15 @@ export default function HeroSection() {
               I create scalable, intelligent solutions at the intersection of hardware and software. Driven by a passion for embedded systems, web development, and engineering, I integrate AI-powered approaches to design smarter, more efficient technologies.
             </motion.p>
 
+            {/* Buttons + Resume + Social */}
             <motion.div
               variants={item}
-              className="flex flex-wrap gap-3 justify-center md:justify-start"
+              className="flex flex-wrap items-center gap-3 justify-center md:justify-start"
             >
+              {/* Get In Touch */}
               <button
-                onClick={() => scrollToSection("Academic-Journey")}
-                className="px-6 py-3 font-roboto font-semibold text-sm tracking-wide text-black transition-all duration-200 hover:brightness-110 active:scale-95"
-                style={{ backgroundColor: "#00bfff" }}
-              >
-                About Me
-              </button>
-              <button
-                onClick={() => scrollToSection("Projects")}
-                className="px-6 py-3 font-roboto font-semibold text-sm tracking-wide transition-all duration-200"
+                onClick={() => scrollToSection("Contact")}
+                className="px-6 py-3 font-roboto font-semibold text-sm tracking-wide flex items-center gap-2 transition-all duration-200"
                 style={{
                   border: "1px solid rgba(255,255,255,0.18)",
                   color: "rgba(255,255,255,0.65)",
@@ -191,14 +182,50 @@ export default function HeroSection() {
                     "rgba(255,255,255,0.65)";
                 }}
               >
-                View Projects
+                Get In Touch <FaArrowRight size={12} />
               </button>
+
+              {/* Download Resume */}
+              <a
+                href="/Clarito, Vincent Maverick - Resume.pdf"
+                download
+                className="px-5 py-2 font-roboto font-semibold text-sm tracking-wide rounded-full text-black bg-[#00bfff] hover:brightness-110 transition-all duration-200"
+              >
+                Download Resume
+              </a>
+
+              {/* LinkedIn & GitHub */}
+              <a
+                href="www.linkedin.com/in/vincent-maverick-clarito-engr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-[#0A66C2] hover:brightness-110 transition-all duration-200"
+              >
+                <FaLinkedin color="#fff" size={18} />
+              </a>
+
+              <a
+                href="https://github.com/MavClarito"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-[#333] hover:brightness-110 transition-all duration-200"
+              >
+                <FaGithub color="#fff" size={18} />
+              </a>
+            </motion.div>
+            
+            {/* Tech Stack label with typing animation */}
+            <motion.div variants={item} className="flex items-center gap-3 justify-center md:justify-start mt-6">
+              <h2 className="typing-text text-[#00bfff] text-sm md:text-base">
+                {typedTech}
+                <span className="blinker">|</span>
+              </h2>
             </motion.div>
 
             {/* Tech badges */}
             <motion.div
               variants={item}
-              className="flex flex-wrap gap-4 justify-center md:justify-start"
+              className="flex flex-wrap gap-4 justify-center md:justify-start mt-4"
             >
               {techs.map(({ name, icon: Icon, color, iconColor }) => (
                 <motion.div
@@ -218,26 +245,6 @@ export default function HeroSection() {
       </div>
 
       {/* Scroll indicator */}
-      {/* global retro heading style (size matches other h2s) */}
-      <style jsx global>{` 
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-        .typing-text {
-          font-family: 'Press Start 2P', monospace;
-        }
-        .retro-heading {
-          font-family: 'Press Start 2P', monospace;
-          font-size: clamp(2rem, 5vw, 4.5rem);
-        }
-        .blinker {
-          display: inline-block;
-          animation: blink 1s step-start infinite;
-          color: #00bfff;
-          margin-left: 2px;
-        }
-        @keyframes blink {
-          50% { opacity: 0; }
-        }
-      `}</style>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -260,6 +267,26 @@ export default function HeroSection() {
           }}
         />
       </motion.div>
+
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        .typing-text {
+          font-family: 'Press Start 2P', monospace;
+        }
+        .retro-heading {
+          font-family: 'Press Start 2P', monospace;
+          font-size: clamp(2rem, 5vw, 4.5rem);
+        }
+        .blinker {
+          display: inline-block;
+          animation: blink 1s step-start infinite;
+          color: #00bfff;
+          margin-left: 2px;
+        }
+        @keyframes blink {
+          50% { opacity: 0; }
+        }
+      `}</style>
     </section>
   );
 }
