@@ -196,7 +196,7 @@ export default function HeroSection() {
 
               {/* LinkedIn & GitHub */}
               <a
-                href="www.linkedin.com/in/vincent-maverick-clarito-engr"
+                href="https://linkedin.com/in/vincent-maverick-clarito-engr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 flex items-center justify-center rounded-full bg-[#0A66C2] hover:brightness-110 transition-all duration-200"
@@ -214,7 +214,7 @@ export default function HeroSection() {
               </a>
             </motion.div>
             
-            {/* Tech Stack label with typing animation */}
+            {/* Tech Stack*/}
             <motion.div variants={item} className="flex items-center gap-3 justify-center md:justify-start mt-6">
               <h2 className="typing-text text-[#00bfff] text-sm md:text-base">
                 {typedTech}

@@ -58,12 +58,21 @@ export default function ProjectsSection() {
           >
             Projects
           </h2>
-          <div className="flex items-center gap-2.5">
-            <button onClick={() => go(-1)}>
-              <ChevronLeft size={18} />
+          <div className="flex items-center gap-4 relative -left-2">
+            {/* Previous Button */}
+            <button
+              onClick={() => go(-1)}
+              className="w-12 h-12 flex items-center justify-center rounded-full border border-transparent hover:border-[#00bfff] hover:bg-[#00bfff] hover:text-black transition-all duration-200 active:scale-95"
+            >
+              <ChevronLeft size={24} />
             </button>
-            <button onClick={() => go(1)}>
-              <ChevronRight size={18} />
+
+            {/* Next Button */}
+            <button
+              onClick={() => go(1)}
+              className="w-12 h-12 flex items-center justify-center rounded-full border border-transparent hover:border-[#00bfff] hover:bg-[#00bfff] hover:text-black transition-all duration-200 active:scale-95"
+            >
+              <ChevronRight size={24} />
             </button>
           </div>
         </div>
@@ -75,7 +84,6 @@ export default function ProjectsSection() {
           style={{ scrollPadding: "0 50vw" }}
         >
           {projects.map((project, index) => {
-            // Determine which card is left, center, or right
             let posClass = "";
             if (index === activeIdx) posClass = "opacity-100 scale-100 blur-0";
             else if (index === (activeIdx + 1) % total)
@@ -90,8 +98,14 @@ export default function ProjectsSection() {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="snap-center shrink-0"
+                className="snap-center shrink-0 relative group"
               >
+                {/* Pop-up Tooltip */}
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-max max-w-xs p-3 rounded-lg bg-[#00bfff] text-black text-[13px] font-roboto shadow-lg opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 z-50 pointer-events-none">
+                  Click me to visit the website
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-3 h-3 bg-[#00bfff] rotate-45 mt-[-5px]"></div>
+                </div>
+
                 <motion.div
                   data-card=""
                   whileHover={{ y: -5 }}

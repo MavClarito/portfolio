@@ -14,7 +14,7 @@ export const projects: Project[] = [
     id: "algal",
     title: "Deep Learning Algal Bloom Estimator",
     description:
-      "Real‑time web app integrating satellite data and deep learning for algal bloom detection.",
+      "A web application that integrates Sentinel‑2 satellite imagery with advanced deep learning models to detect and estimate algal bloom coverage in lakes. Features dynamic visualizations, historical trend analysis, and actionable insights for environmental monitoring and water quality management.",
     link: "https://algsat-47ca8.web.app/#/",
     gradientStart: "#1e3a8a",
     gradientEnd: "#0a192f",
@@ -25,7 +25,7 @@ export const projects: Project[] = [
     id: "honeycomb",
     title: "Geometry & Waggle Dance Analysis",
     description:
-      "Analyzed honeycomb structure and bee communication using statistical methods.",
+      "Investigated honeycomb architecture and bee communication patterns through statistical modeling and data analysis. Explored spatial geometry and behavioral insights to understand hive efficiency and information flow within colonies.",
     link: "https://danceofhexagons.vercel.app/",
     gradientStart: "#3b3b6d",
     gradientEnd: "#0d0d0d",
