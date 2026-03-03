@@ -3,43 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
-// placeholder projects with provided descriptions
-const projects = [
-  {
-    id: "algal",
-    title: "Deep Learning Algal Bloom Estimator",
-    description:
-      "Real‑time web app integrating satellite data and deep learning for algal bloom detection.",
-    link: "https://algsat-47ca8.web.app/#/",
-    gradientStart: "#1e3a8a",
-    gradientEnd: "#0a192f",
-    emoji: "🌊",
-    tech: ["React", "Python", "TensorFlow"],
-  },
-  {
-    id: "honeycomb",
-    title: "Geometry & Waggle Dance Analysis",
-    description:
-      "Analyzed honeycomb structure and bee communication using statistical methods.",
-    link: "https://danceofhexagons.vercel.app/",
-    gradientStart: "#3b3b6d",
-    gradientEnd: "#0d0d0d",
-    emoji: "🐝",
-    tech: ["Python", "OpenCV", "HTML", "CSS", "JS"],
-  },
-
-  {
-    id: "placeholder1",
-    title: "Project Placeholder 1",
-    description: "Brief description of placeholder project.",
-    link: "https://example.com/1",
-    gradientStart: "#2c3e50",
-    gradientEnd: "#1a252f",
-    emoji: "🛠️",
-    tech: ["Node.js", "Express"],
-  },
-];
+import { projects } from "@/lib/projects";
 
 export default function ProjectsSection() {
   const trackRef = useRef<HTMLDivElement>(null);

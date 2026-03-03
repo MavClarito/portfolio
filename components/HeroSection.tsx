@@ -3,6 +3,15 @@
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import { useState, useEffect } from "react";
+// icons for tech badges
+import {
+  SiPython,
+  SiCplusplus,
+  SiJavascript,
+  SiGit,
+  SiReact,
+  SiNodedotjs,
+} from "react-icons/si";
 
 const container: Variants = {
   hidden: {},
@@ -21,6 +30,16 @@ const scrollToSection = (id: string) => {
 export default function HeroSection() {
   const fullText = "Hello, I am Maverick Clarito";
   const [typed, setTyped] = useState("");
+
+  // technologies to show as badges
+  const techs = [
+    { name: 'Python', icon: SiPython, color: '#3776AB' },
+    { name: 'C++', icon: SiCplusplus, color: '#00599C' },
+    { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E', iconColor: '#000' },
+    { name: 'Git', icon: SiGit, color: '#F05032' },
+    { name: 'React', icon: SiReact, color: '#61DAFB', iconColor: '#000' },
+    { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
+  ];
 
   // typing animation
   useEffect(() => {
@@ -177,15 +196,22 @@ export default function HeroSection() {
             </motion.div>
 
             {/* Tech badges */}
-            <motion.div variants={item}>
-              <Image
-                src="/images/tech-badges.png"
-                alt="Tech skills: HTML5, CSS3, JavaScript, TypeScript, React, Node.js, MongoDB, MySQL, Python, C++, Java, Git, GitHub, VS Code, Arduino"
-                width={766}
-                height={69}
-                className="w-full max-w-[560px] h-auto mx-auto md:mx-0"
-                style={{ opacity: 0.88 }}
-              />
+            <motion.div
+              variants={item}
+              className="flex flex-wrap gap-4 justify-center md:justify-start"
+            >
+              {techs.map(({ name, icon: Icon, color, iconColor }) => (
+                <motion.div
+                  key={name}
+                  whileHover={{ scale: 1.1, y: -4 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center justify-center w-12 h-12 rounded-full shadow-lg transition-colors"
+                  style={{ backgroundColor: color }}
+                  title={name}
+                >
+                  <Icon color={iconColor || "#fff"} size={24} />
+                </motion.div>
+              ))}
             </motion.div>
           </motion.div>
         </div>

@@ -16,7 +16,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Maverick | Computer Engineer",
+  title: "Vincent Maverick Clarito",
   description: "Personal portfolio of Maverick, a Computer Engineer",
 };
 

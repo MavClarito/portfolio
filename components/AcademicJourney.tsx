@@ -8,6 +8,7 @@ import { academicData } from "@/lib/academic";
 export default function AcademicJourney() {
   // start with no year active; keeps nav inactive while the school image is visible
   const [activeYear, setActiveYear] = useState<string | null>(null);
+  const [modal, setModal] = useState<{ text: string; img: string } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -132,14 +133,21 @@ export default function AcademicJourney() {
               viewport={{ once: true }}
               className="mb-14"
             >
-              <Image
-                src="/images/tip-school.jpg"
-                alt="Technological Institute of the Philippines – Quezon City"
-                width={720}
-                height={360}
-                className="w-full h-auto rounded-lg object-cover"
-                style={{ maxHeight: 400, objectPosition: "center" }}
-              />
+              <a
+                href="https://www.google.com/maps/place/Technological+Institute+of+the+Philippines+-+Quezon+City/@14.6255364,121.0588501,17z/data=!4m10!1m2!2m1!1stip+qc!3m6!1s0x3397b796aecb8763:0xaa026ea7350f82e7!8m2!3d14.6257638!4d121.0617218!15sCgZ0aXAgcWOSAQNpdXTgAQA!16s%2Fg%2F11xcs9xd5?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block cursor-pointer"
+              >
+                <Image
+                  src="/images/tip.jpg"
+                  alt="Technological Institute of the Philippines – Quezon City"
+                  width={720}
+                  height={360}
+                  className="w-full h-auto rounded-lg object-cover"
+                  style={{ maxHeight: 400, objectPosition: "center" }}
+                />
+              </a>
               <p
                 className="mt-3 text-sm"
                 style={{ color: "#757575" }}
@@ -222,7 +230,7 @@ export default function AcademicJourney() {
                       {entry.highlights.map((h) => (
                         <li
                           key={h}
-                          className="text-xs px-3 py-1.5 rounded-full font-sans"
+                          className="text-xs px-3 py-1.5 rounded-full font-sans transition-colors duration-200 cursor-default hover:bg-blue-500 hover:text-white"
                           style={{
                             border: "1px solid rgba(0,191,255,0.2)",
                             color: "rgba(0,191,255,0.8)",
@@ -239,6 +247,28 @@ export default function AcademicJourney() {
             </div>
 
             {/* Achievements subsection */}
+            {modal && (
+              <div
+                className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4"
+                onClick={() => setModal(null)}
+              >
+                <div className="relative max-w-3xl w-full">
+                  <Image
+                    src={`/images/${modal.img}`}
+                    alt={modal.text}
+                    width={800}
+                    height={600}
+                    className="w-full h-auto rounded-lg shadow-2xl"
+                  />
+                  <button
+                    onClick={() => setModal(null)}
+                    className="absolute top-2 right-2 text-white text-xl"
+                  >
+                    &times;
+                  </button>
+                </div>
+              </div>
+            )}
             <div className="mt-20">
               <motion.h2
                 initial={{ opacity: 0, y: 24 }}
@@ -259,20 +289,22 @@ export default function AcademicJourney() {
                 ].map((ach, i) => (
                   <motion.div
                     key={i}
-                    className="flex items-center gap-4 bg-[#0d0d0d] p-4 rounded-lg"
+                    onClick={() => setModal(ach)}
+                    className="flex items-center gap-6 bg-[#0a0a0a] p-6 rounded-lg hover:bg-[#1a1a1a] transition-colors cursor-pointer w-full shadow-md"
                     initial={{ opacity: 0, y: 18 }}
                     whileInView={{ opacity: 1, y: 0 }}
+                    whileHover={{ scale: 1.04 }}
                     transition={{ duration: 0.5, delay: i * 0.08 }}
                     viewport={{ once: true }}
                   >
                     <Image
                       src={`/images/${ach.img}`}
                       alt={ach.text}
-                      width={80}
-                      height={80}
-                      className="w-20 h-20 object-contain rounded"
+                      width={100}
+                      height={100}
+                      className="w-24 h-24 object-contain rounded transition-transform duration-200"
                     />
-                    <p className="text-sm" style={{ color: "#b3b3b3" }}>
+                    <p className="text-base font-medium transition-colors duration-200" style={{ color: "#b3b3b3" }}>
                       {ach.text}
                     </p>
                   </motion.div>
