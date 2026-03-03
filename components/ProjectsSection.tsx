@@ -22,7 +22,7 @@ const projects = [
     title: "Geometry & Waggle Dance Analysis",
     description:
       "Analyzed honeycomb structure and bee communication using statistical methods.",
-    link: "https://example.com/honeycomb",
+    link: "https://danceofhexagons.vercel.app/",
     gradientStart: "#3b3b6d",
     gradientEnd: "#0d0d0d",
     emoji: "🐝",
