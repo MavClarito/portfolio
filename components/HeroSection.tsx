@@ -154,7 +154,7 @@ export default function HeroSection() {
               className="text-[15px] leading-[1.75] max-w-[800px] mx-auto md:mx-0"
               style={{ color: "#b3b3b3" }}
             >
-              I create scalable, intelligent solutions at the intersection of hardware and software. Driven by a passion for embedded systems, web development, and engineering, I integrate AI-powered approaches to design smarter, more efficient technologies.
+              Turning ideas into intelligent systems, I design hardware-software solutions that scale. My work blends embedded systems, web development, and AI-driven innovation to create technology that works smarter and faster.
             </motion.p>
 
             {/* Buttons + Resume + Social */}
