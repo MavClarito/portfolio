@@ -9,7 +9,7 @@ import ParticleBackground from "./ParticleBackground";
 export default function AcademicJourney() {
   // start with no year active; keeps nav inactive while the school image is visible
   const [activeYear, setActiveYear] = useState<string | null>(null);
-  const [modal, setModal] = useState<{ text: string; img: string } | null>(null);
+  const [modal, setModal] = useState<{ title: string; img: string; description: string; date: string } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -251,24 +251,35 @@ export default function AcademicJourney() {
             {/* Achievements subsection */}
             {modal && (
               <div
-                className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4"
+                className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4"
                 onClick={() => setModal(null)}
               >
-                <div className="relative max-w-3xl w-full">
-                  <Image
-                    src={`/images/${modal.img}`}
-                    alt={modal.text}
-                    width={800}
-                    height={600}
-                    className="w-full h-auto rounded-lg shadow-2xl"
-                  />
+                <motion.div
+                  initial={{ scale: 0.95, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.95, opacity: 0 }}
+                  className="relative max-w-4xl w-full bg-[#0a0a0a] rounded-2xl overflow-hidden border border-white/10 shadow-2xl max-h-[90vh] flex flex-col"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="relative w-full h-[45vh] shrink-0">
+                    <Image
+                      src={`/images/${modal.img}`}
+                      alt={modal.title}
+                      fill
+                      className="object-contain bg-black"
+                    />
+                  </div>
+                  <div className="p-6 md:p-8 bg-gradient-to-b from-[#0a0a0a] to-[#000] overflow-y-auto overflow-x-hidden custom-scrollbar">
+                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">{modal.title}</h3>
+                    <p className="text-[#b3b3b3] text-sm md:text-base leading-relaxed">{modal.description}</p>
+                  </div>
                   <button
                     onClick={() => setModal(null)}
-                    className="absolute top-2 right-2 text-white text-xl"
+                    className="absolute top-4 right-4 bg-black/60 hover:bg-[#00bfff]/30 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors backdrop-blur-md border border-white/10 z-10"
                   >
                     &times;
                   </button>
-                </div>
+                </motion.div>
               </div>
             )}
             <div className="mt-20">
@@ -282,33 +293,75 @@ export default function AcademicJourney() {
               >
                 Achievements
               </motion.h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-20">
                 {[
-                  { text: "Dean's List (2022)", img: "DEANS.jpg" },
-                  { text: "First Place Robotics Competition", img: "CHAMP.png" },
-                  { text: "T.I.P. Gawad Awardee", img: "GAWADPIC.jpg" },
-                  { text: "Volunteer tutor", img: "MENTOR.jpg" },
+                  {
+                    title: "Dean's List Awardee",
+                    img: "DEANS.jpg",
+                    description: "Awarded to students who have achieved academic excellence by maintaining GPA.",
+                    date: "2022-2023"
+                  },
+                  {
+                    title: "Dean's List Awardee",
+                    img: "Deans2023-2024.jpg",
+                    description: "Awarded to students who have achieved academic excellence by maintaining GPA.",
+                    date: "2023-2024"
+                  },
+                  {
+                    title: "Robotics Competition Champion",
+                    img: "CHAMP.png",
+                    description: "Secured First Place overall. Designed, built, and programmed an autonomous robot that outperformed all other entries in navigating complex obstacle courses.",
+                    date: "2023"
+                  },
+                  {
+                    title: "T.I.P. Gawad Awardee",
+                    img: "GAWADPIC.jpg",
+                    description: "The highest institutional honor given to outstanding students who exemplify holistic excellence—combining stellar academic performance with strong leadership and impactful community involvement.",
+                    date: "2024"
+                  },
+                  {
+                    title: "Volunteer Academic Tutor",
+                    img: "MENTOR.jpg",
+                    description: "Served as a mentor for junior students in core programming fundamentals and advanced topics. Focused on breaking down complex subjects into approachable concepts to help peers succeed.",
+                    date: "2024"
+                  },
                 ].map((ach, i) => (
                   <motion.div
                     key={i}
                     onClick={() => setModal(ach)}
-                    className="flex items-center gap-6 bg-[#0a0a0a] p-6 rounded-lg hover:bg-[#1a1a1a] transition-colors cursor-pointer w-full shadow-md"
-                    initial={{ opacity: 0, y: 18 }}
+                    className="group relative flex flex-col sm:flex-row items-center gap-6 bg-gradient-to-br from-[#111] to-[#050505] border border-white/10 rounded-2xl p-5 hover:border-[#00bfff]/40 transition-all duration-300 cursor-pointer w-full shadow-lg hover:shadow-[#00bfff]/10 overflow-hidden"
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    whileHover={{ scale: 1.04 }}
-                    transition={{ duration: 0.5, delay: i * 0.08 }}
+                    whileHover={{ y: -4 }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
                     viewport={{ once: true }}
                   >
-                    <Image
-                      src={`/images/${ach.img}`}
-                      alt={ach.text}
-                      width={100}
-                      height={100}
-                      className="w-24 h-24 object-contain rounded transition-transform duration-200"
-                    />
-                    <p className="text-base font-medium transition-colors duration-200" style={{ color: "#b3b3b3" }}>
-                      {ach.text}
-                    </p>
+                    {/* Glowing effect on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#00bfff]/0 via-[#00bfff]/5 to-[#00bfff]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
+
+                    {/* Image container */}
+                    <div className="relative w-full sm:w-[140px] h-[180px] sm:h-[140px] shrink-0 rounded-xl overflow-hidden bg-black border border-white/5 shadow-inner">
+                      <Image
+                        src={`/images/${ach.img}`}
+                        alt={ach.title}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex flex-col justify-center flex-1 py-1 w-full text-left">
+                      <span className="text-[#00bfff] text-xs font-bold tracking-widest uppercase mb-1.5 flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#00bfff] animate-pulse" />
+                        {ach.date}
+                      </span>
+                      <h3 className="text-[17px] font-bold text-white mb-2 leading-snug group-hover:text-[#00bfff] transition-colors duration-300">
+                        {ach.title}
+                      </h3>
+                      <p className="text-sm font-sans leading-relaxed text-[#8e8e93] line-clamp-3">
+                        {ach.description}
+                      </p>
+                    </div>
                   </motion.div>
                 ))}
               </div>
