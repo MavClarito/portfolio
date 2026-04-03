@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { projects } from "@/lib/projects";
+import ParticleBackground from "./ParticleBackground";
 
 export default function ProjectsSection() {
   const trackRef = useRef<HTMLDivElement>(null);

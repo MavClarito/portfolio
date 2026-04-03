@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { academicData } from "@/lib/academic";
+import ParticleBackground from "./ParticleBackground";
 
 export default function AcademicJourney() {
   // start with no year active; keeps nav inactive while the school image is visible
@@ -50,6 +51,7 @@ export default function AcademicJourney() {
 
   return (
     <section className="bg-black py-20 md:py-28 relative">
+
       {/* top divider glow */}
       <div
         className="absolute top-0 left-0 right-0 h-px"
@@ -58,7 +60,7 @@ export default function AcademicJourney() {
             "linear-gradient(90deg, transparent, rgba(0,191,255,0.2), transparent)",
         }}
       />
-
+      <ParticleBackground />
       {/* use full available width rather than a fixed max and keep content left-aligned */}
       <div className="w-full max-w-none mx-auto px-6 md:px-10 lg:px-16">
         {/* Heading */}

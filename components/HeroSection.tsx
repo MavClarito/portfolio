@@ -12,6 +12,7 @@ import {
   SiNodedotjs,
 } from "react-icons/si";
 import { FaLinkedin, FaGithub, FaArrowRight } from "react-icons/fa";
+import ParticleBackground from "./ParticleBackground";
 
 const container: Variants = {
   hidden: {},
@@ -50,7 +51,7 @@ export default function HeroSection() {
       if (idx >= techStackText.length) clearInterval(timer);
     }, 80);
     return () => clearInterval(timer);
-}, []);
+  }, []);
   useEffect(() => {
     let idx = 0;
     const timer = setInterval(() => {
@@ -63,6 +64,7 @@ export default function HeroSection() {
 
   return (
     <section className="min-h-screen flex flex-col justify-center bg-black relative overflow-hidden">
+      <ParticleBackground />
       <div
         className="pointer-events-none absolute inset-0 opacity-50"
         style={{
@@ -213,7 +215,7 @@ export default function HeroSection() {
                 <FaGithub color="#fff" size={18} />
               </a>
             </motion.div>
-            
+
             {/* Tech Stack*/}
             <motion.div variants={item} className="flex items-center gap-3 justify-center md:justify-start mt-6">
               <h2 className="typing-text text-[#00bfff] text-sm md:text-base">
