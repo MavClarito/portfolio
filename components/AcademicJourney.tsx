@@ -266,6 +266,7 @@ export default function AcademicJourney() {
                       src={`/images/${modal.img}`}
                       alt={modal.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, 800px"
                       className="object-contain bg-black"
                     />
                   </div>
@@ -345,6 +346,7 @@ export default function AcademicJourney() {
                         src={`/images/${ach.img}`}
                         alt={ach.title}
                         fill
+                        sizes="(max-width: 640px) 100vw, 140px"
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                     </div>

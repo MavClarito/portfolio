@@ -86,31 +86,44 @@ export default function ProjectsSection() {
         >
           {projects.map((project, index) => {
             let posClass = "";
-            if (index === activeIdx) posClass = "opacity-100 scale-100 blur-0";
-            else if (index === (activeIdx + 1) % total)
+            let zClass = "z-0";
+            if (index === activeIdx) {
+              posClass = "opacity-100 scale-100 blur-0";
+              zClass = "z-50";
+            } else if (index === (activeIdx + 1) % total || index === (activeIdx - 1 + total) % total) {
               posClass = "opacity-50 scale-95 blur-sm";
-            else if (index === (activeIdx - 1 + total) % total)
-              posClass = "opacity-50 scale-95 blur-sm";
-            else posClass = "opacity-30 scale-90 blur-sm";
+              zClass = "z-10";
+            } else {
+              posClass = "opacity-30 scale-90 blur-sm";
+              zClass = "z-0";
+            }
 
             return (
               <motion.a
                 key={project.id}
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="snap-center shrink-0 relative group"
+                href={index === activeIdx ? project.link : undefined}
+                target={index === activeIdx ? "_blank" : undefined}
+                rel={index === activeIdx ? "noopener noreferrer" : undefined}
+                onClick={(e) => {
+                  if (index !== activeIdx) {
+                    e.preventDefault();
+                    // Intercept the click and do nothing (no link opening, no scroll).
+                  }
+                }}
+                className={`snap-center shrink-0 relative ${zClass} ${index === activeIdx ? "group" : ""}`}
               >
                 {/* Pop-up Tooltip */}
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-max max-w-xs p-3 rounded-lg bg-[#00bfff] text-black text-[13px] font-roboto shadow-lg opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 z-50 pointer-events-none">
-                  Click me to visit the website
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-3 h-3 bg-[#00bfff] rotate-45 mt-[-5px]"></div>
-                </div>
+                {index === activeIdx && (
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-max max-w-xs p-3 rounded-lg bg-[#00bfff] text-black text-[13px] font-roboto shadow-lg opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 z-50 pointer-events-none">
+                    Click me to visit the website
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 w-3 h-3 bg-[#00bfff] rotate-45 mt-[-5px]"></div>
+                  </div>
+                )}
 
                 <motion.div
                   data-card=""
-                  whileHover={{ y: -5 }}
-                  className={`rounded-xl flex flex-col gap-4 cursor-pointer transition-all duration-300 ${posClass}`}
+                  whileHover={index === activeIdx ? { y: -5 } : { y: 0 }}
+                  className={`rounded-xl flex flex-col gap-4 transition-all duration-300 ${index === activeIdx ? "cursor-pointer" : "cursor-default"} ${posClass}`}
                   style={{
                     width: "clamp(260px, 50vw, 340px)",
                     padding: 24,
@@ -121,10 +134,10 @@ export default function ProjectsSection() {
                 >
                   {project.image ? (
                     <div className="w-full h-40 rounded-lg overflow-hidden shrink-0 shadow-md shadow-black/40 border border-white/10">
-                      <img 
-                        src={project.image} 
-                        alt={project.title} 
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" 
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                       />
                     </div>
                   ) : project.emoji ? (

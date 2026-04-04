@@ -90,7 +90,7 @@ export default function HeroSection() {
             transition={{ duration: 0.75, ease: "easeOut" }}
             className="shrink-0 flex justify-center md:flex-1 md:max-w-[550px]"
           >
-            <div className="relative">
+            <div className="relative inline-block">
               <div
                 className="absolute inset-0 rounded-2xl"
                 style={{
@@ -106,8 +106,10 @@ export default function HeroSection() {
                 width={520}
                 height={660}
                 className="relative w-[280px] sm:w-[350px] md:w-[450px] lg:w-[520px] h-auto object-cover object-top"
+                style={{ height: "auto" }}
                 priority
               />
+              <div className="absolute bottom-0 left-0 w-full h-32 md:h-48 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-none" />
             </div>
           </motion.div>
 
