@@ -142,7 +142,7 @@ export default function AcademicJourney() {
                 className="block cursor-pointer"
               >
                 <Image
-                  src="/images/tip.jpg"
+                  src="/images/tip-school.jpg"
                   alt="Technological Institute of the Philippines – Quezon City"
                   width={720}
                   height={360}
@@ -311,7 +311,7 @@ export default function AcademicJourney() {
                     title: "Robotics Competition Champion",
                     img: "CHAMP.png",
                     description: "Secured First Place overall. Designed, built, and programmed an autonomous robot that outperformed all other entries in navigating complex obstacle courses.",
-                    date: "2023"
+                    date: "2024"
                   },
                   {
                     title: "T.I.P. Gawad Awardee",

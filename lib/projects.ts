@@ -5,7 +5,8 @@ export interface Project {
   link: string;
   gradientStart: string;
   gradientEnd: string;
-  emoji: string;
+  emoji?: string;
+  image?: string;
   tech: string[];
 }
 
@@ -18,7 +19,7 @@ export const projects: Project[] = [
     link: "https://algsat-47ca8.web.app/#/",
     gradientStart: "#1e3a8a",
     gradientEnd: "#1a252f",
-    emoji: "🌊",
+    image: "/images/algsat.png",
     tech: ["React", "Python", "TensorFlow", "Git"],
   },
   {
@@ -29,7 +30,7 @@ export const projects: Project[] = [
     link: "https://danceofhexagons.vercel.app/",
     gradientStart: "#cca80aff",
     gradientEnd: "#1a252f",
-    emoji: "🐝",
+    image: "/images/danceofhex.png",
     tech: ["Python", "OpenCV", "HTML", "CSS", "JS", "Git"],
   },
   {

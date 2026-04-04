@@ -119,7 +119,17 @@ export default function ProjectsSection() {
                     minHeight: 280,
                   }}
                 >
-                  <div className="text-4xl">{project.emoji}</div>
+                  {project.image ? (
+                    <div className="w-full h-40 rounded-lg overflow-hidden shrink-0 shadow-md shadow-black/40 border border-white/10">
+                      <img 
+                        src={project.image} 
+                        alt={project.title} 
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" 
+                      />
+                    </div>
+                  ) : project.emoji ? (
+                    <div className="text-4xl">{project.emoji}</div>
+                  ) : null}
                   <div className="flex-1">
                     <h3
                       className="font-sans font-bold text-lg mb-2 leading-tight"
