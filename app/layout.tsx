@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Roboto } from "next/font/google";
 import "./globals.css";
-import Footer from "../components/Footer";
 
 const inter = Inter({
   variable: "--font-inter-var",
@@ -18,6 +17,9 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "Vincent Maverick Clarito",
   description: "Personal portfolio of Maverick, a Computer Engineer",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -46,7 +48,6 @@ export default function RootLayout({
           }}
         />
         {children}
-        <Footer />
       </body>
     </html>
   );

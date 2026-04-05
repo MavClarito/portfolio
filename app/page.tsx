@@ -1,8 +1,6 @@
 "use client";
 
 import HeroSection from "@/components/HeroSection";
-import AcademicJourney from "@/components/AcademicJourney";
-import ProjectsSection from "@/components/ProjectsSection";
 import Navigation from "@/components/Navigation";
 import { useLayoutEffect, useState } from "react";
 import SkeletonLoader from "@/components/SkeletonLoader";
@@ -37,15 +35,7 @@ export default function Home() {
   return (
     <main className="bg-black min-h-screen overflow-x-hidden animate-in fade-in duration-1000">
       <Navigation />
-      <section id="Introduction">
-        <HeroSection />
-      </section>
-      <section id="Academic-Journey">
-        <AcademicJourney />
-      </section>
-      <section id="Projects">
-        <ProjectsSection />
-      </section>
+      <HeroSection />
     </main>
   );
 }
