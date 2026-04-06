@@ -114,7 +114,7 @@ export default function HeroSection() {
             {/* Avatar */}
             <motion.div variants={item} className="shrink-0 w-full md:w-auto flex justify-center">
               <div className="relative w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-[1.75rem] md:rounded-[2rem] overflow-hidden bg-[#1a1a24] border border-white/5 shadow-inner">
-                <Image src="/images/profile.png" alt="Vincent Maverick Clarito" fill className="object-cover object-top" priority />
+                <Image src="/images/profile.png" alt="Vincent Maverick Clarito" fill sizes="(max-width: 640px) 160px, (max-width: 768px) 224px, 256px" className="object-cover object-top" priority />
               </div>
             </motion.div>
 
