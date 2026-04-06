@@ -99,7 +99,7 @@ export default function HeroSection() {
             {/* Avatar */}
             <motion.div variants={item} className="shrink-0 w-full md:w-auto flex justify-center">
               <div className="relative w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-[1.75rem] md:rounded-[2rem] overflow-hidden bg-[#1a1a24] border border-white/5 shadow-inner">
-                <Image src="/images/profile.png" alt="Vincent Maverick Clarito" fill sizes="(max-width: 640px) 160px, (max-width: 768px) 224px, 256px" className="object-cover object-top" priority />
+                <Image src="/images/GAWADPIC.jpg" alt="Vincent Maverick Clarito" fill quality={100} sizes="(max-width: 768px) 100vw, 512px" className="object-cover scale-[1.35] origin-[50%_65%]" priority />
               </div>
             </motion.div>
 
@@ -353,10 +353,9 @@ export default function HeroSection() {
                     <motion.div
                       key={i}
                       onClick={() => setModal(ach)}
-                      className="group relative flex flex-col sm:flex-row items-center gap-4 sm:gap-6 bg-[#12121e]/80 backdrop-blur-xl border border-white/[0.05] rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-5 hover:bg-[#1a1a24] transition-all duration-300 cursor-pointer w-full shadow-lg overflow-hidden"
+                      className="relative flex flex-col sm:flex-row items-center gap-4 sm:gap-6 bg-[#12121e]/80 backdrop-blur-xl border border-white/[0.05] rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-5 transition-all duration-300 cursor-pointer w-full shadow-lg overflow-hidden"
                       initial={{ opacity: 0, x: 18 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      whileHover={{ y: -4 }}
                       transition={{ duration: 0.5, delay: i * 0.06 }}
                       viewport={{ once: true, margin: "-60px" }}
                     >
@@ -366,15 +365,15 @@ export default function HeroSection() {
                           alt={ach.title}
                           fill
                           sizes="(max-width:640px) 100vw, 160px"
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="object-cover transition-transform duration-500"
                         />
                       </div>
                       <div className="flex flex-col justify-center flex-1 py-1 w-full text-left md:pr-4">
                         <span className="text-gray-400 text-xs font-bold tracking-widest uppercase mb-2 flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#00bfff]" />
                           {ach.date}
                         </span>
-                        <h3 className="text-lg md:text-2xl font-extrabold text-white mb-2 leading-snug group-hover:text-[#00bfff] transition-colors duration-300">
+                        <h3 className="text-lg md:text-2xl font-extrabold text-white mb-2 leading-snug transition-colors duration-300">
                           {ach.title}
                         </h3>
                         <p className="text-sm leading-relaxed text-gray-400 line-clamp-3">
@@ -463,29 +462,36 @@ export default function HeroSection() {
               >
                 {/* Image side */}
                 <div className="w-full md:w-1/2 flex justify-center">
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="relative w-full aspect-[4/3] rounded-[1.5rem] md:rounded-[2rem] overflow-hidden bg-[#07070b] border border-white/5 shadow-inner group"
-                  >
-                    {project.image ? (
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                      />
-                    ) : project.emoji ? (
-                      <div className="w-full h-full flex items-center justify-center text-6xl sm:text-8xl">
-                        {project.emoji}
-                      </div>
-                    ) : null}
-                    <div className="absolute inset-0 bg-[#07070b]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
-                      <div className="bg-white text-black px-5 py-2.5 rounded-full font-bold flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl text-sm">
-                        Visit Website <ExternalLink size={14} />
-                      </div>
-                    </div>
-                  </a>
+                  {(() => {
+                    const hasLink = project.link && project.link.trim() !== "" && project.link !== "#";
+                    return (
+                      <a
+                        href={hasLink ? project.link : undefined}
+                        target={hasLink ? "_blank" : undefined}
+                        rel={hasLink ? "noopener noreferrer" : undefined}
+                        className={`relative w-full aspect-[4/3] rounded-[1.5rem] md:rounded-[2rem] overflow-hidden bg-[#07070b] border border-white/5 shadow-inner ${hasLink ? "group cursor-pointer" : "cursor-default"}`}
+                      >
+                        {project.image ? (
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className={`w-full h-full object-cover transition-transform duration-700 ease-out ${hasLink ? "group-hover:scale-105" : ""}`}
+                          />
+                        ) : project.emoji ? (
+                          <div className="w-full h-full flex items-center justify-center text-6xl sm:text-8xl">
+                            {project.emoji}
+                          </div>
+                        ) : null}
+                        {hasLink && (
+                          <div className="absolute inset-0 bg-[#07070b]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
+                            <div className="bg-white text-black px-5 py-2.5 rounded-full font-bold flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl text-sm">
+                              Visit Website <ExternalLink size={14} />
+                            </div>
+                          </div>
+                        )}
+                      </a>
+                    );
+                  })()}
                 </div>
 
                 {/* Info side */}

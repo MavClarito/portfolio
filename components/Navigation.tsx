@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { FaUserAlt, FaGraduationCap } from "react-icons/fa";
+import { FaLaptopCode } from "react-icons/fa6";
 
 const sections = [
-  { id: "Introduction", label: "Introduction", emoji: "👤" },
-  { id: "Academic-Journey", label: "Academic Journey", emoji: "🎓" },
-  { id: "Projects", label: "Projects", emoji: "🛠️" },
+  { id: "Introduction", label: "Introduction", icon: FaUserAlt, color: "#00bfff" },
+  { id: "Academic-Journey", label: "Academic Journey", icon: FaGraduationCap, color: "#a78bfa" },
+  { id: "Projects", label: "Projects", icon: FaLaptopCode, color: "#34d399" },
 ];
 
 export default function Navigation() {
@@ -34,10 +36,13 @@ export default function Navigation() {
 
   return (
     <nav
-      className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-3"
+      className="fixed z-[999] flex md:flex-col items-center md:items-end gap-2 sm:gap-3 
+                 bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 md:bottom-auto md:left-auto md:right-6 md:top-1/2 md:-translate-y-1/2 md:translate-x-0
+                 bg-[#12121e]/90 md:bg-transparent backdrop-blur-3xl md:backdrop-blur-none 
+                 px-4 sm:px-6 py-3 md:p-0 rounded-full md:rounded-none border border-white/[0.08] md:border-none shadow-[0_8px_30px_rgba(0,0,0,0.5)] md:shadow-none"
       aria-label="Page navigation"
     >
-      {sections.map(({ id, label, emoji }) => {
+      {sections.map(({ id, label, icon: Icon, color }) => {
         const isActive = active === id;
         const isHovered = hovered === id;
 
@@ -47,58 +52,65 @@ export default function Navigation() {
             onClick={() => scrollTo(id)}
             onMouseEnter={() => setHovered(id)}
             onMouseLeave={() => setHovered(null)}
-            className="group flex items-center gap-3 cursor-pointer"
+            className="group flex flex-col md:flex-row items-center gap-1.5 md:gap-3 cursor-pointer relative"
             aria-label={`Navigate to ${label}`}
           >
-            {/* Label — slides in when active or hovered */}
+            {/* Label — visible on desktop next to icon, hidden on mobile */}
             <span
-              className="text-xs font-sans whitespace-nowrap transition-all duration-200"
+              className="hidden md:block text-xs font-sans whitespace-nowrap transition-all duration-200"
               style={{
                 opacity: isActive || isHovered ? 1 : 0,
-                transform:
-                  isActive || isHovered ? "translateX(0)" : "translateX(6px)",
-                color: isActive
-                  ? "rgba(255,255,255,0.85)"
-                  : "rgba(255,255,255,0.45)",
+                transform: isActive || isHovered ? "translateX(0)" : "translateX(6px)",
+                color: isActive ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.45)",
               }}
             >
               {label}
             </span>
 
-            {/* Emoji container */}
+            {/* Icon container */}
             <span
               className="flex items-center justify-center rounded-2xl transition-all duration-300 select-none"
               style={{
                 width: isHovered ? 48 : isActive ? 44 : 40,
                 height: isHovered ? 48 : isActive ? 44 : 40,
-                fontSize: isHovered ? "1.35rem" : isActive ? "1.2rem" : "1rem",
 
                 backgroundColor: isActive
-                  ? "rgba(0, 191, 255, 0.12)"
-                  : "rgba(255, 255, 255, 0.06)",
+                  ? `${color}20` // 12% opacity roughly by hex appended
+                  : "rgba(255, 255, 255, 0.04)",
 
                 border: isHovered
                   ? "2px solid transparent"
                   : isActive
-                    ? "2px solid rgba(0, 191, 255, 0.6)"
-                    : "2px solid rgba(255, 255, 255, 0.1)",
+                    ? `2px solid ${color}90`
+                    : "2px solid rgba(255, 255, 255, 0.08)",
 
                 outline: isHovered
-                  ? "2px solid rgba(0, 191, 255, 0.55)"
+                  ? `2px solid ${color}80`
                   : "2px solid transparent",
                 outlineOffset: "2px",
 
                 boxShadow: isActive
-                  ? "0 0 14px rgba(0, 191, 255, 0.25), inset 0 0 8px rgba(0, 191, 255, 0.08)"
+                  ? `0 0 14px ${color}40, inset 0 0 8px ${color}15`
                   : isHovered
-                    ? "0 0 18px rgba(0, 191, 255, 0.3)"
+                    ? `0 0 18px ${color}50`
                     : "0 2px 8px rgba(0,0,0,0.3)",
 
                 backdropFilter: "blur(8px)",
                 transform: isHovered ? "scale(1.08)" : "scale(1)",
               }}
             >
-              {emoji}
+              <Icon size={isHovered ? 20 : isActive ? 18 : 16} color={isActive || isHovered ? color : "rgba(255,255,255,0.6)"} className="transition-all duration-300" />
+            </span>
+            
+            {/* Small indicator label for mobile only */}
+            <span 
+               className="md:hidden text-[9px] font-bold tracking-wider transition-all duration-200 mt-1"
+               style={{
+                 color: isActive ? color : "rgba(255,255,255,0.4)",
+                 opacity: isActive ? 1 : 0.6
+               }}
+            >
+              {label}
             </span>
           </button>
         );
