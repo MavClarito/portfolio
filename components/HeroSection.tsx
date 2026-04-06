@@ -11,9 +11,10 @@ import {
   SiReact,
   SiNodedotjs,
 } from "react-icons/si";
-import { FaLinkedin, FaGithub, FaDownload, FaDiscord, FaEnvelope, FaPhone } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaDownload, FaEnvelope, FaPhone } from "react-icons/fa";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import ParticleBackground from "./ParticleBackground";
+import DiscordButton from "./DiscordButton";
 import { academicData } from "@/lib/academic";
 import { projects } from "@/lib/projects";
 
@@ -68,22 +69,6 @@ export default function HeroSection() {
 
   /* ─────────────────────────── Academic state ───────────────────────────── */
   const [modal, setModal] = useState<{ title: string; img: string; description: string; date: string } | null>(null);
-  const [discordOpen, setDiscordOpen] = useState(false);
-
-  const discordRef = useRef<HTMLDivElement>(null);
-
-  /* ── close discord popup on outside click ── */
-  useEffect(() => {
-    if (!discordOpen) return;
-    const handler = (e: MouseEvent) => {
-      if (discordRef.current && !discordRef.current.contains(e.target as Node))
-        setDiscordOpen(false);
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, [discordOpen]);
-
-
   /* ─────────────────────────── Projects state ───────────────────────────── */
   const [activeIdx, setActiveIdx] = useState(0);
   const total = projects.length;
@@ -172,33 +157,7 @@ export default function HeroSection() {
                   >
                     <FaLinkedin size={18} />
                   </a>
-                  <div className="relative" ref={discordRef}>
-                    <button
-                      onClick={(e) => { e.stopPropagation(); setDiscordOpen((v) => !v); }}
-                      className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-[#5865F2] hover:bg-[#4752c4] transition-transform hover:scale-105 active:scale-95 text-white"
-                      aria-label="Discord username"
-                    >
-                      <FaDiscord size={18} />
-                    </button>
-                    <AnimatePresence>
-                      {discordOpen && (
-                        <motion.div
-                          key="discord-popup"
-                          initial={{ opacity: 0, y: 8, scale: 0.92 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 8, scale: 0.92 }}
-                          transition={{ duration: 0.18, ease: "easeOut" }}
-                          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 z-50"
-                        >
-                          <div className="bg-[#1e1e2d] border border-white/10 rounded-xl px-4 py-2.5 shadow-xl flex items-center gap-2 whitespace-nowrap">
-                            <FaDiscord size={14} className="text-[#5865F2] shrink-0" />
-                            <span className="text-sm font-semibold text-white">soruuuuu._</span>
-                          </div>
-                          <div className="w-3 h-3 bg-[#1e1e2d] border-r border-b border-white/10 rotate-45 mx-auto -mt-1.5" />
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
+                  <DiscordButton />
                 </div>
               </motion.div>
             </div>
@@ -644,6 +603,7 @@ export default function HeroSection() {
             >
               <FaGithub color="#fff" size={18} />
             </a>
+            <DiscordButton className="p-2 rounded-full bg-[#5865F2] hover:scale-110 hover:brightness-110 transition-transform duration-200 z-10 text-white" iconSize={18} />
           </div>
         </div>
 
