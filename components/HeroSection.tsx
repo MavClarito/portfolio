@@ -244,7 +244,7 @@ export default function HeroSection() {
                 className="mb-10 md:mb-14 p-4 md:p-6 bg-[#12121e]/80 backdrop-blur-xl border border-white/[0.05] rounded-[2rem] shadow-2xl"
               >
                 <a
-                  href="https://www.google.com/maps/place/Technological+Institute+of+the+Philippines+-+Quezon+City/@14.6255364,121.0588501,17z"
+                  href="https://www.google.com/maps/place/Technological+Institute+of+the+Philippines+-+Quezon+City/data=!4m2!3m1!1s0x0:0xaa026ea7350f82e7?sa=X&ved=1t:2428&ictx=111"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block cursor-pointer overflow-hidden rounded-xl"

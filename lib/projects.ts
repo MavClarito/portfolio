@@ -31,7 +31,7 @@ export const projects: Project[] = [
     gradientStart: "#cca80aff",
     gradientEnd: "#1a252f",
     image: "/images/danceofhex.png",
-    tech: ["Python", "OpenCV", "HTML", "CSS", "JS", "Git"],
+    tech: ["Deep Learning", "Python", "Satellite Imagery", "React", "Git"],
   },
   {
     id: "parcelver",
@@ -43,6 +43,16 @@ export const projects: Project[] = [
     emoji: "📦",
     image: "/images/parcel.png",
     tech: ["C++", "C", "Git"],
+  },
+  {
+    id: "farmradar",
+    title: "Farm Radar",
+    description: "A web and mobile platform that helps farmers monitor the health of their crops using Copernicus Sentinel-2 satellite imagery. The system processes satellite data to generate NDVI, NDWI, and vegetation health maps, showing which areas of a farm are healthy, stressed, or need irrigation.",
+    link: "",
+    gradientStart: "#047e04ff",
+    gradientEnd: "#1a252f",
+    emoji: "🛰️ ",
+    tech: ["Deep Learning", "Python", "Satellite Imagery", "React", "Git"],
   },
   {
     id: "xpense",
