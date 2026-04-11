@@ -20,7 +20,7 @@ export const projects: Project[] = [
     gradientStart: "#1e3a8a",
     gradientEnd: "#1a252f",
     image: "/images/algsat.png",
-    tech: ["React", "Python", "TensorFlow", "Git"],
+    tech: ["Deep Learning", "Python", "Satellite Imagery", "React", "Git"],
   },
   {
     id: "honeycomb",
@@ -31,7 +31,7 @@ export const projects: Project[] = [
     gradientStart: "#cca80aff",
     gradientEnd: "#1a252f",
     image: "/images/danceofhex.png",
-    tech: ["Deep Learning", "Python", "Satellite Imagery", "React", "Git"],
+    tech: ["React", "Python", "TensorFlow", "Git"],
   },
   {
     id: "parcelver",
