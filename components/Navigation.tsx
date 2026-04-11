@@ -75,7 +75,7 @@ export default function Navigation() {
                 height: isHovered ? 48 : isActive ? 44 : 40,
 
                 backgroundColor: isActive
-                  ? `${color}20` // 12% opacity roughly by hex appended
+                  ? `${color}20`
                   : "rgba(255, 255, 255, 0.04)",
 
                 border: isHovered
@@ -101,14 +101,14 @@ export default function Navigation() {
             >
               <Icon size={isHovered ? 20 : isActive ? 18 : 16} color={isActive || isHovered ? color : "rgba(255,255,255,0.6)"} className="transition-all duration-300" />
             </span>
-            
+
             {/* Small indicator label for mobile only */}
-            <span 
-               className="md:hidden text-[9px] font-bold tracking-wider transition-all duration-200 mt-1"
-               style={{
-                 color: isActive ? color : "rgba(255,255,255,0.4)",
-                 opacity: isActive ? 1 : 0.6
-               }}
+            <span
+              className="md:hidden text-[9px] font-bold tracking-wider transition-all duration-200 mt-1"
+              style={{
+                color: isActive ? color : "rgba(255,255,255,0.4)",
+                opacity: isActive ? 1 : 0.6
+              }}
             >
               {label}
             </span>

@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 
-/* Reusable shimmer bar */
 function Shimmer({ className, style }: { className?: string; style?: React.CSSProperties }) {
   return (
     <div className={`relative overflow-hidden rounded-md ${className}`} style={style}>
@@ -40,34 +39,19 @@ export default function SkeletonLoader() {
       style={{ backgroundColor: "#07070b" }}
       aria-hidden="true"
     >
-      {/* ── Radial gradient overlay — matches HeroSection opacity-40 ── */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-40"
-        style={{
-          background:
-            "radial-gradient(circle at 10% 20%, rgba(10, 20, 60, 0.5) 0%, transparent 60%)",
-        }}
-      />
 
-      {/* ── Subtle particle-like dot grid to hint at ParticleBackground ── */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, rgba(0,191,255,0.8) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-        }}
-      />
 
-      {/* ── Centered column — same max-w-5xl as HeroSection ── */}
+
+
+      {/* Centered column */}
       <div className="relative z-10 flex flex-col items-center gap-5 px-4 sm:px-6 py-10 w-full max-w-5xl mx-auto mt-10">
 
-        {/* ── Card 1: Profile — bg-[#12121e]/80 backdrop-blur-3xl border border-white/[0.05] shadow-2xl rounded-[2.5rem] ── */}
+        {/* Profile */}
         <div
           className="w-full rounded-[2.5rem] p-6 md:p-10 flex flex-col md:flex-row gap-8 items-center backdrop-blur-3xl border border-white/[0.05] shadow-2xl"
           style={{ backgroundColor: "rgba(18, 18, 30, 0.80)" }}
         >
-          {/* Profile photo — same sizing as HeroSection: w-56 h-56 md:w-64 md:h-64 rounded-[2rem] */}
+          {/* Profile photo */}
           <div className="shrink-0 flex justify-center w-full md:w-auto">
             <div
               className="relative overflow-hidden rounded-[2rem] border border-white/5 shadow-inner"
@@ -112,15 +96,15 @@ export default function SkeletonLoader() {
           </div>
         </div>
 
-        {/* ── Card 2: Overview ── */}
+        {/* Overview */}
         <div
           className="w-full rounded-[2.5rem] p-6 md:p-10 flex flex-col gap-5 backdrop-blur-3xl border border-white/[0.05] shadow-2xl"
           style={{ backgroundColor: "rgba(18, 18, 30, 0.80)" }}
         >
-          {/* "OVERVIEW" badge */}
+          {/* OVERVIEW*/}
           <Shimmer className="w-24 h-6 rounded-full" />
 
-          {/* Headline — 2 lines, matches text-4xl md:text-5xl font-extrabold */}
+          {/* Headline  */}
           <div className="flex flex-col gap-3">
             <Shimmer className="w-full h-9 md:h-11" />
             <div className="flex gap-3 flex-wrap">
@@ -145,7 +129,7 @@ export default function SkeletonLoader() {
             <Shimmer className="w-4/5 h-3.5" />
           </div>
 
-          {/* "CORE TECH STACK" label + 6 icons */}
+          {/* CORE TECH STACK*/}
           <div className="flex flex-col gap-3 mt-2">
             <Shimmer className="w-32 h-3.5" />
             <div className="flex flex-wrap gap-3">
@@ -157,7 +141,7 @@ export default function SkeletonLoader() {
         </div>
       </div>
 
-      {/* ── Right nav skeleton — matches new Navigation.tsx emoji containers ── */}
+      {/*Right nav skeleton*/}
       <div className="fixed right-6 top-1/2 -translate-y-1/2 flex flex-col items-end gap-3 z-20">
         {/* Active item */}
         <div className="flex items-center gap-3">

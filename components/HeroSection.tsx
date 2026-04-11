@@ -3,14 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { motion, type Variants, AnimatePresence } from "framer-motion";
-import {
-  SiPython,
-  SiCplusplus,
-  SiJavascript,
-  SiGit,
-  SiReact,
-  SiNodedotjs,
-} from "react-icons/si";
+import { SiPython, SiCplusplus, SiJavascript, SiGit, SiReact, SiNodedotjs, } from "react-icons/si";
 import { FaLinkedin, FaGithub, FaDownload, FaEnvelope, FaPhone } from "react-icons/fa";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import ParticleBackground from "./ParticleBackground";
@@ -32,10 +25,6 @@ const scrollToSection = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 };
 
-// ── Categorical tag colour mapping ──────────────────────────────────────────
-// Update your project data in @/lib/projects to use a `categories` field
-// (string[]) instead of `tech` so the labels reflect domain rather than language.
-// e.g. categories: ["Computer Vision", "Deep Learning", "Robotics"]
 const getCategoryStyle = (tag: string) => {
   const k = tag.toLowerCase();
   if (k.includes("vision") || k.includes("cv"))
@@ -67,29 +56,22 @@ export default function HeroSection() {
     { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
   ];
 
-  /* ─────────────────────────── Academic state ───────────────────────────── */
   const [modal, setModal] = useState<{ title: string; img: string; description: string; date: string } | null>(null);
-  /* ─────────────────────────── Projects state ───────────────────────────── */
   const [activeIdx, setActiveIdx] = useState(0);
   const total = projects.length;
   const go = (dir: 1 | -1) => setActiveIdx((prev) => (prev + dir + total) % total);
   const project = projects[activeIdx];
 
-  /* ═══════════════════════════════ RENDER ═══════════════════════════════ */
   return (
     <div className="bg-[#07070b] relative font-outfit text-white overflow-hidden w-full">
       <ParticleBackground />
 
-      {/* ═══════════════════════ HERO SECTION ═══════════════════════════════ */}
-      <section id="Introduction" className="min-h-screen flex flex-col justify-center relative py-20 sm:py-24">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-40"
-          style={{ background: "radial-gradient(circle at 10% 20%, rgba(10,20,60,0.5) 0%, transparent 60%)" }}
-        />
+      {/*  HERO SECTION  */}
+      <section id="Introduction" className="relative">
 
-        <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 relative z-10 flex flex-col gap-5 sm:gap-6 mt-8 sm:mt-10">
+        <div className="relative z-10 flex flex-col gap-5 sm:gap-6 px-4 sm:px-6 py-10 w-full max-w-5xl mx-auto mt-10">
 
-          {/* ── Card 1: Profile ── */}
+          {/* Profile*/}
           <motion.div
             variants={container}
             initial="hidden"
@@ -163,7 +145,7 @@ export default function HeroSection() {
             </div>
           </motion.div>
 
-          {/* ── Card 2: Overview ── */}
+          {/* Overview  */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -210,13 +192,8 @@ export default function HeroSection() {
         </div>
       </section>
 
-      {/* ═══════════════════════ ACADEMIC SECTION ════════════════════════════ */}
-      {/*  Extra bottom padding on mobile so the fixed bottom bar doesn't overlap content */}
-      <section id="Academic-Journey" className="py-20 md:py-28 relative pb-32 md:pb-28">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-40"
-          style={{ background: "radial-gradient(circle at 10% 80%, rgba(10,20,60,0.5) 0%, transparent 60%)" }}
-        />
+      {/*  ACADEMIC SECTION */}
+      <section id="Academic-Journey" className="pt-10 md:pt-14 pb-32 md:pb-28 relative">
 
         <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 relative z-10">
           <motion.h2
@@ -232,7 +209,7 @@ export default function HeroSection() {
           <div className="flex flex-col md:flex-row gap-10 lg:gap-16">
 
 
-            {/* ── Main content ─────────────────────────────────────────────── */}
+            {/* Main content */}
             <div className="w-full">
 
               {/* School photo */}
@@ -274,7 +251,7 @@ export default function HeroSection() {
                     transition={{ duration: 0.5, delay: index * 0.06 }}
                     viewport={{ once: true, margin: "-60px" }}
                     className="relative pl-7 sm:pl-8 pb-10 last:pb-0"
-                    style={{ borderLeft: "2px solid rgba(255,255,255,0.05)" }}
+                    style={{ borderLeft: "2px solid rgba(255, 255, 255, 0.05)" }}
                   >
                     <div className="absolute -left-[9px] top-6 w-4 h-4 rounded-full transition-all duration-300 bg-[#07070b] flex items-center justify-center border border-white/20">
                       <div className="w-2 h-2 rounded-full bg-white opacity-80" />
@@ -305,7 +282,7 @@ export default function HeroSection() {
                 ))}
               </div>
 
-              {/* ── Achievements ────────────────────────────────────────────── */}
+              {/*  Achievements & Experiences */}
               <div id="Achievements" className="mt-20">
                 <motion.h2
                   initial={{ opacity: 0, y: 24 }}
@@ -314,7 +291,7 @@ export default function HeroSection() {
                   viewport={{ once: true }}
                   className="text-2xl md:text-4xl font-extrabold mb-8 md:mb-10 text-white"
                 >
-                  Achievements
+                  Achievements & Experiences
                 </motion.h2>
 
                 <div className="grid grid-cols-1 gap-5 sm:gap-6 pb-20">
@@ -324,6 +301,12 @@ export default function HeroSection() {
                       img: "DEANS.jpg",
                       description: "Awarded to students who have achieved academic excellence by maintaining GPA.",
                       date: "2022-2023",
+                    },
+                    {
+                      title: "Sangguniang Kabataan Speech",
+                      img: "SK.jpg",
+                      description: "Ran as a candidate for Sangguniang Kabataan to serve and represent the youth and delivered a speech to the public.",
+                      date: "2023",
                     },
                     {
                       title: "Dean's List Awardee",
@@ -349,11 +332,17 @@ export default function HeroSection() {
                       description: "Served as a mentor for junior students in core programming fundamentals and advanced topics. Focused on breaking down complex subjects into approachable concepts to help peers succeed.",
                       date: "2024",
                     },
+                    {
+                      title: "4th Best Design Project",
+                      img: "4thBestDesignProjectByOProgramChair.jpg",
+                      description: "Awarded as the 4th Best Thesis Project with the theme Advancing Sustainable Innovation through Engineering Solutions and Emerging Technologies by the Program Chair.",
+                      date: "2024",
+                    },
                   ].map((ach, i) => (
                     <motion.div
                       key={i}
                       onClick={() => setModal(ach)}
-                      className="relative flex flex-col sm:flex-row items-center gap-4 sm:gap-6 bg-[#12121e]/80 backdrop-blur-xl border border-white/[0.05] rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-5 transition-all duration-300 cursor-pointer w-full shadow-lg overflow-hidden"
+                      className="relative flex flex-col sm:flex-row items-center gap-4 sm:gap-6 bg-[#12121e]/80 backdrop-blur-xl border border-white/[0.05] rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-5 cursor-pointer w-full shadow-lg overflow-hidden"
                       initial={{ opacity: 0, x: 18 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: i * 0.06 }}
@@ -384,6 +373,48 @@ export default function HeroSection() {
                   ))}
                 </div>
               </div>
+
+              {/*  OJT CAROUSEL */}
+              <div className="w-full relative z-10 flex flex-col items-center mt-0">
+                <motion.h2
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="text-2xl md:text-4xl font-extrabold text-white mb-8 md:mb-12 self-start w-full"
+                >
+                  OJT Experience
+                </motion.h2>
+
+                <div
+                  className="relative w-full overflow-hidden flex"
+                  style={{
+                    maskImage: "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
+                    WebkitMaskImage: "linear-gradient(to right, transparent, black 5%, black 95%, transparent)"
+                  }}
+                >
+                  <motion.div
+                    className="flex w-max"
+                    animate={{ x: ["0%", "-50%"] }}
+                    transition={{ ease: "linear", duration: 45, repeat: Infinity }}
+                  >
+                    {[...["2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg"], ...["2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg"]].map((img, i) => (
+                      <div key={i} className="pr-4 sm:pr-6 shrink-0 h-48 sm:h-56 md:h-64 lg:h-72 aspect-[4/3]">
+                        <div className="relative w-full h-full rounded-[1.5rem] md:rounded-[2rem] overflow-hidden border border-white/[0.05] shadow-lg bg-[#12121e]/80 backdrop-blur-xl">
+                          <Image
+                            src={`/images/${img}`}
+                            alt={`OJT Experience`}
+                            fill
+                            sizes="(max-width:768px) 256px, 384px"
+                            className="object-cover"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </motion.div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -405,7 +436,7 @@ export default function HeroSection() {
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ duration: 0.22 }}
+              transition={{ duration: 0.5 }}
               className="relative max-w-4xl w-full bg-[#12121e] rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl max-h-[90vh] flex flex-col"
               onClick={(e) => e.stopPropagation()}
             >
@@ -433,19 +464,16 @@ export default function HeroSection() {
         )}
       </AnimatePresence>
 
-      {/* ═══════════════════════ PROJECTS SECTION ════════════════════════════ */}
-      <section id="Projects" className="py-20 md:py-28 relative min-h-screen flex flex-col justify-center">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-40"
-          style={{ background: "radial-gradient(circle at 90% 50%, rgba(10,20,60,0.5) 0%, transparent 50%)" }}
-        />
+
+      {/*  PROJECTS SECTION  */}
+      <section id="Projects" className="pt-10 md:pt-1 pb-20 md:pb-28 relative flex flex-col">
 
         <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 relative z-10 flex flex-col gap-5 sm:gap-6">
 
-          {/* Header — Prev/Next removed from here, moved to pagination row */}
+          {/* Header */}
           <div className="mb-2 sm:mb-4">
             <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight">
-              Selected Projects
+              Projects
             </h2>
           </div>
 
@@ -469,7 +497,7 @@ export default function HeroSection() {
                         href={hasLink ? project.link : undefined}
                         target={hasLink ? "_blank" : undefined}
                         rel={hasLink ? "noopener noreferrer" : undefined}
-                        className={`relative w-full aspect-[4/3] rounded-[1.5rem] md:rounded-[2rem] overflow-hidden bg-[#07070b] border border-white/5 shadow-inner ${hasLink ? "group cursor-pointer" : "cursor-default"}`}
+                        className={`relative w-full aspect-[4/5] rounded-[1.5rem] md:rounded-[2rem] overflow-hidden bg-[#07070b] border border-white/5 shadow-inner ${hasLink ? "group cursor-pointer" : "cursor-default"}`}
                       >
                         {project.image ? (
                           <img
@@ -574,7 +602,7 @@ export default function HeroSection() {
         </div>
       </section>
 
-      {/* ═══════════════════════════ FOOTER ══════════════════════════════════ */}
+      {/*  FOOTER  */}
       <footer id="Contact" className="relative py-10 px-4">
         <div className="flex flex-col md:flex-row items-center justify-center gap-5 md:gap-6 text-center">
           <p className="text-sm flex flex-col sm:flex-row items-center gap-3 sm:gap-5" style={{ color: "rgba(255,255,255,0.6)" }}>

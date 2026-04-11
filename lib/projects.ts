@@ -40,12 +40,11 @@ export const projects: Project[] = [
     link: "",
     gradientStart: "#b17507ff",
     gradientEnd: "#1a252f",
-    emoji: "📦",
     image: "/images/parcel.png",
     tech: ["C++", "C", "Git"],
   },
   {
-    id: "PersonalTools",
+    id: "PersonalTool",
     title: "Daily Toolkit",
     description: "A collection of tools that help me with my daily tasks and needs. Includes a speech transcriber, a youtube converter, and more.",
     link: "https://mavsdailytoolkit.vercel.app/",
@@ -71,7 +70,7 @@ export const projects: Project[] = [
     link: "",
     gradientStart: "#047e04ff",
     gradientEnd: "#1a252f",
-    emoji: "💵",
+    image: "/images/xpense.png",
     tech: ["React native", "JS", "TSX", "Git"],
   },
 ];
