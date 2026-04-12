@@ -46,6 +46,39 @@ const getCategoryStyle = (tag: string) => {
   return { bg: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.75)", border: "rgba(255,255,255,0.12)" };
 };
 
+function AutoCarousel({ images, title, className }: { images: string[]; title: string; className: string }) {
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIdx((prev) => (prev + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  return (
+    <div className="relative w-full h-full overflow-hidden">
+      <AnimatePresence initial={false}>
+        <motion.div
+          key={idx}
+          initial={{ x: "-20%", zIndex: 0 }}
+          animate={{ x: 0, zIndex: 0 }}
+          exit={{ x: "100%", zIndex: 10 }}
+          transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1] }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={`/images/${images[idx]}`}
+            alt={title}
+            fill
+            sizes={className.includes("object-contain") ? "(max-width:768px) 100vw, 800px" : "(max-width:640px) 100vw, 160px"}
+            className={className}
+          />
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export default function HeroSection() {
   const techs = [
     { name: "Python", icon: SiPython, color: "#3776AB" },
@@ -56,7 +89,7 @@ export default function HeroSection() {
     { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
   ];
 
-  const [modal, setModal] = useState<{ title: string; img: string; description: string; date: string } | null>(null);
+  const [modal, setModal] = useState<{ title: string; img: string | string[]; description: string; date: string } | null>(null);
   const [activeIdx, setActiveIdx] = useState(0);
   const total = projects.length;
   const go = (dir: 1 | -1) => setActiveIdx((prev) => (prev + dir + total) % total);
@@ -298,9 +331,9 @@ export default function HeroSection() {
                   {[
                     {
                       title: "Dean's List Awardee",
-                      img: "DEANS.jpg",
+                      img: ["DEANS.jpg", "Deans2023-2024.jpg"],
                       description: "Awarded to students who have achieved academic excellence by maintaining GPA.",
-                      date: "2022-2023",
+                      date: "2022-2024",
                     },
                     {
                       title: "Sangguniang Kabataan Speech",
@@ -309,21 +342,15 @@ export default function HeroSection() {
                       date: "2023",
                     },
                     {
-                      title: "Dean's List Awardee",
-                      img: "Deans2023-2024.jpg",
-                      description: "Awarded to students who have achieved academic excellence by maintaining GPA.",
-                      date: "2023-2024",
-                    },
-                    {
                       title: "Robotics Competition Champion",
-                      img: "CHAMP.png",
+                      img: ["CHAMP.png", "GroupChamp.jpg", "ustCoding.jpg", "ustCoding1.jpg"],
                       description: "Secured First Place overall. Designed, built, and programmed an autonomous robot that outperformed all other entries in navigating complex obstacle courses.",
                       date: "2024",
                     },
                     {
                       title: "T.I.P. Gawad Awardee",
                       img: "GAWADPIC.jpg",
-                      description: "The highest institutional honor given to outstanding students who exemplify holistic excellence—combining stellar academic performance with strong leadership and impactful community involvement.",
+                      description: "I was honored to receive the T.I.P. Gawad Award, the highest institutional recognition given to students who demonstrate holistic excellence. This award reflects my commitment to strong academic performance and meaningful involvement in competitions that create a positive impact on the school.",
                       date: "2024",
                     },
                     {
@@ -349,13 +376,17 @@ export default function HeroSection() {
                       viewport={{ once: true, margin: "-60px" }}
                     >
                       <div className="relative w-full sm:w-[140px] h-[160px] sm:h-[140px] shrink-0 rounded-[1.5rem] overflow-hidden bg-black border border-white/5">
-                        <Image
-                          src={`/images/${ach.img}`}
-                          alt={ach.title}
-                          fill
-                          sizes="(max-width:640px) 100vw, 160px"
-                          className="object-cover transition-transform duration-500"
-                        />
+                        {Array.isArray(ach.img) ? (
+                          <AutoCarousel images={ach.img} title={ach.title} className="object-cover transition-transform duration-500" />
+                        ) : (
+                          <Image
+                            src={`/images/${ach.img}`}
+                            alt={ach.title}
+                            fill
+                            sizes="(max-width:640px) 100vw, 160px"
+                            className="object-cover transition-transform duration-500"
+                          />
+                        )}
                       </div>
                       <div className="flex flex-col justify-center flex-1 py-1 w-full text-left md:pr-4">
                         <span className="text-gray-400 text-xs font-bold tracking-widest uppercase mb-2 flex items-center gap-2">
@@ -441,13 +472,17 @@ export default function HeroSection() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="relative w-full h-[40vh] md:h-[50vh] shrink-0 bg-black">
-                <Image
-                  src={`/images/${modal.img}`}
-                  alt={modal.title}
-                  fill
-                  sizes="(max-width:768px) 100vw, 800px"
-                  className="object-contain"
-                />
+                {Array.isArray(modal.img) ? (
+                  <AutoCarousel images={modal.img} title={modal.title} className="object-contain" />
+                ) : (
+                  <Image
+                    src={`/images/${modal.img}`}
+                    alt={modal.title}
+                    fill
+                    sizes="(max-width:768px) 100vw, 800px"
+                    className="object-contain"
+                  />
+                )}
               </div>
               <div className="p-6 md:p-10 bg-[#12121e] overflow-y-auto custom-scrollbar">
                 <h3 className="text-xl md:text-3xl font-extrabold text-white mb-4">{modal.title}</h3>
