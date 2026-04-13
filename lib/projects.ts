@@ -20,7 +20,7 @@ export const projects: Project[] = [
     gradientStart: "#1e3a8a",
     gradientEnd: "#1a252f",
     image: "/images/algsat.png",
-    tech: ["Deep Learning", "Python", "Satellite Imagery", "React", "Git"],
+    tech: ["Deep Learning", "Satellite Imagery", "Environmental Monitoring", "Web Development"],
   },
   {
     id: "honeycomb",
@@ -31,7 +31,7 @@ export const projects: Project[] = [
     gradientStart: "#cca80aff",
     gradientEnd: "#1a252f",
     image: "/images/danceofhex.png",
-    tech: ["React", "Python", "TensorFlow", "Git"],
+    tech: ["Machine Learning", "Data Analysis", "Statistical Modeling", "Web Development"],
   },
   {
     id: "parcelver",
@@ -41,17 +41,17 @@ export const projects: Project[] = [
     gradientStart: "#b17507ff",
     gradientEnd: "#1a252f",
     image: "/images/parcel.png",
-    tech: ["C++", "C", "Git"],
+    tech: ["Embedded Systems", "Hardware/IoT", "Security Systems"],
   },
   {
     id: "PersonalTool",
-    title: "Daily Toolkit",
+    title: "My Personal Daily Toolkit",
     description: "A collection of tools that help me with my daily tasks and needs. Includes a speech transcriber, a youtube converter, and more.",
     link: "https://mavsdailytoolkit.vercel.app/",
     gradientStart: "#047e04ff",
     gradientEnd: "#1a252f",
     image: "/images/dailytoolkit.png",
-    tech: ["React", "JavaScript", "Git"],
+    tech: ["Web Development", "Utility Applications", "Audio Processing"],
   },
   {
     id: "farmradar",
@@ -61,7 +61,7 @@ export const projects: Project[] = [
     gradientStart: "#047e04ff",
     gradientEnd: "#1a252f",
     emoji: "🛰️ ",
-    tech: ["Deep Learning", "Python", "Satellite Imagery", "React", "Git"],
+    tech: ["Satellite Imagery", "Agriculture Tech", "Remote Sensing", "Web & Mobile Development"],
   },
   {
     id: "xpense",
@@ -71,6 +71,6 @@ export const projects: Project[] = [
     gradientStart: "#047e04ff",
     gradientEnd: "#1a252f",
     image: "/images/xpense.png",
-    tech: ["React native", "JS", "TSX", "Git"],
+    tech: ["Mobile Development", "Computer Vision/OCR", "Location Services", "Community Features"],
   },
 ];

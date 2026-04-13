@@ -27,22 +27,63 @@ const scrollToSection = (id: string) => {
 
 const getCategoryStyle = (tag: string) => {
   const k = tag.toLowerCase();
-  if (k.includes("vision") || k.includes("cv"))
+
+  // Mobile / Location / Community
+  if (k.includes("mobile"))
+    return { bg: "rgba(236,72,153,0.13)", color: "#ec4899", border: "rgba(236,72,153,0.35)" };
+  if (k.includes("location"))
+    return { bg: "rgba(244,63,94,0.13)", color: "#f43f5e", border: "rgba(244,63,94,0.35)" };
+  if (k.includes("community"))
+    return { bg: "rgba(20,184,166,0.13)", color: "#14b8a6", border: "rgba(20,184,166,0.35)" };
+
+  // Computer Vision / AI / ML
+  if (k.includes("vision") || k.includes("cv") || k.includes("ocr"))
     return { bg: "rgba(0,191,255,0.13)", color: "#00bfff", border: "rgba(0,191,255,0.35)" };
-  if (k.includes("deep") || k.includes("neural") || k.includes("learning"))
+  if (k.includes("deep") || k.includes("neural") || k.includes("learning") || k.includes("ai") || k.includes("ml") || k.includes("machine"))
     return { bg: "rgba(167,139,250,0.13)", color: "#a78bfa", border: "rgba(167,139,250,0.35)" };
+
+  // Data / Math
+  if (k.includes("data") || k.includes("analysis"))
+    return { bg: "rgba(139,92,246,0.13)", color: "#8b5cf6", border: "rgba(139,92,246,0.35)" };
+  if (k.includes("statistic") || k.includes("model"))
+    return { bg: "rgba(217,70,239,0.13)", color: "#d946ef", border: "rgba(217,70,239,0.35)" };
+
+  // Satellite / Remote Sensing
+  if (k.includes("satellite"))
+    return { bg: "rgba(99,102,241,0.13)", color: "#6366f1", border: "rgba(99,102,241,0.35)" };
+  if (k.includes("remote") || k.includes("sensing"))
+    return { bg: "rgba(6,182,212,0.13)", color: "#06b6d4", border: "rgba(6,182,212,0.35)" };
+
+  // Environment / Agriculture
+  if (k.includes("environment"))
+    return { bg: "rgba(34,197,94,0.13)", color: "#22c55e", border: "rgba(34,197,94,0.35)" };
+  if (k.includes("agriculture") || k.includes("farm"))
+    return { bg: "rgba(132,204,22,0.13)", color: "#84cc16", border: "rgba(132,204,22,0.35)" };
+
+  // Hardware / Embedded / Security
+  if (k.includes("embed") || k.includes("hardware") || k.includes("iot") || k.includes("firmware"))
+    return { bg: "rgba(251,146,60,0.13)", color: "#fb923c", border: "rgba(251,146,60,0.35)" };
+  if (k.includes("security"))
+    return { bg: "rgba(239,68,68,0.13)", color: "#ef4444", border: "rgba(239,68,68,0.35)" };
+
+  // Utilities / Audio
+  if (k.includes("utility"))
+    return { bg: "rgba(245,158,11,0.13)", color: "#f59e0b", border: "rgba(245,158,11,0.35)" };
+  if (k.includes("audio"))
+    return { bg: "rgba(14,165,233,0.13)", color: "#0ea5e9", border: "rgba(14,165,233,0.35)" };
+
+  // Web / Software
+  if (k.includes("web") || k.includes("react") || k.includes("node") || k.includes("frontend"))
+    return { bg: "rgba(52,211,153,0.13)", color: "#34d399", border: "rgba(52,211,153,0.35)" };
+
+  // Fallbacks
   if (k.includes("robot"))
     return { bg: "rgba(248,113,113,0.13)", color: "#f87171", border: "rgba(248,113,113,0.35)" };
   if (k.includes("git") || k.includes("version") || k.includes("control"))
     return { bg: "rgba(74,222,128,0.13)", color: "#4ade80", border: "rgba(74,222,128,0.35)" };
-  if (k.includes("web") || k.includes("react") || k.includes("node") || k.includes("frontend"))
-    return { bg: "rgba(52,211,153,0.13)", color: "#34d399", border: "rgba(52,211,153,0.35)" };
-  if (k.includes("embed") || k.includes("hardware") || k.includes("iot") || k.includes("firmware"))
-    return { bg: "rgba(251,146,60,0.13)", color: "#fb923c", border: "rgba(251,146,60,0.35)" };
-  if (k.includes("ai") || k.includes("ml") || k.includes("machine"))
-    return { bg: "rgba(167,139,250,0.13)", color: "#a78bfa", border: "rgba(167,139,250,0.35)" };
   if (k.includes("open") || k.includes("source"))
     return { bg: "rgba(251,191,36,0.13)", color: "#fbbf24", border: "rgba(251,191,36,0.35)" };
+
   return { bg: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.75)", border: "rgba(255,255,255,0.12)" };
 };
 
@@ -51,7 +92,7 @@ function AutoCarousel({ images, title, className }: { images: string[]; title: s
   useEffect(() => {
     const timer = setInterval(() => {
       setIdx((prev) => (prev + 1) % images.length);
-    }, 4000);
+    }, 2500);
     return () => clearInterval(timer);
   }, [images.length]);
 
